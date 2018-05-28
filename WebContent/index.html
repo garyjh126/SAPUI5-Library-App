@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv='Content-Type' content='text/html;charset=UTF-8' />
+<link rel="shortcut icon" href="#" />
+<script src="resources/sap-ui-core.js" id="sap-ui-bootstrap"
+	data-sap-ui-libs="sap.m,sap.ui.ux3,sap.ui.commons,sap.ui.layout"
+	data-sap-ui-theme="sap_bluecrystal">
+	
+</script>
+<!-- only load the mobile lib "sap.m" and the "sap_bluecrystal" theme -->
+
+<script>
+	sap.ui.localResources("bookcrud");
+
+	var app = new sap.m.App("menuID", {
+		initialPage : "menu"
+	});
+
+	var menu = sap.ui.view({
+		id : "menu",
+		viewName : "bookcrud.Menu",
+		type : sap.ui.core.mvc.ViewType.JS
+	});
+
+	var browseLibrary = sap.ui.view({
+		id : "idBookDetails1",
+		viewName : "bookcrud.BookDetails",
+		type : sap.ui.core.mvc.ViewType.JS
+	});
+
+	 var myBooks = sap.ui.view({
+		id : "myBooksID",
+		viewName : "bookcrud.MyBooks",
+		type : sap.ui.core.mvc.ViewType.JS
+	}); 
+
+	app.addPage(menu).addPage(browseLibrary);
+	app.addPage(myBooks);
+
+	//create the ApplicationHeader control
+	/* var oAppHeader = new sap.ui.commons.ApplicationHeader("appHeader");
+
+	//configure the branding area
+	//oAppHeader.setLogoSrc("images/WIN_20180508_10_18_15_Pro.jpg");
+	oAppHeader.setLogoText("SAP SAPUI5 Library");
+
+	//configure the welcome area
+	oAppHeader.setDisplayWelcome(true);
+	oAppHeader.setUserName("Gary Harney");
+
+	//configure the log off area
+	oAppHeader.setDisplayLogoff(true);
+	oAppHeader.attachLogoff(function() {
+		console.log("Log off is triggered");
+	});
+	oAppHeader.placeAt("content"); */
+	app.placeAt("content");
+</script>
+
+</head>
+<body class="sapUiBody" role="application">
+	<div id="content"></div>
+</body>
+</html>
