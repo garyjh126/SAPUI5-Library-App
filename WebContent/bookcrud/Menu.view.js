@@ -21,12 +21,13 @@ sap.ui.jsview("bookcrud.Menu", {
 
 		});
 		var btnBrowseLibrary = new sap.m.Button("BrowseLibrary", {
-			
-            text: "Browse Library",
+			icon: icon="sap-icon://education",
+			text: "Browse Library",
 		            press: [ oController.press, oController ]
 		}).addStyleClass("btnBrowseLibrary");
 		
 		var btnMyBooks = new sap.m.Button("MyBooks", {
+			icon: icon="sap-icon://learning-assistant",
             text: "My Books",
 		            press: [ oController.press2, oController ]
 		}).addStyleClass("btnMyBooks");

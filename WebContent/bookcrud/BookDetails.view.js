@@ -65,6 +65,7 @@ sap.ui.jsview("bookcrud.BookDetails", {
 		            tap: [ oController.Borrow, oController ]
 		            });
         		var oBtnSub = new sap.m.Button("Submit", {
+        					icon: icon="sap-icon://add-coursebook",
         		            text: "Create New Book",
         		            press: oController.NewEntry,
         		            type: sap.m.ButtonType.Emphasized
@@ -139,7 +140,7 @@ sap.ui.jsview("bookcrud.BookDetails", {
           				new sap.m.Column({
           					width: "4em", header: new sap.m.Label({text: "Booking ID"}) 
           				})]
-          		});
+          		}).addStyleClass("blueTable");
                  
 
                  
