@@ -13,7 +13,37 @@ sap.ui.jsview("bookcrud.MyBooks", {
      		navButtonPress: [oController.navFromMyBooks, oController]
 		});
 		
+<<<<<<< HEAD
 		
+=======
+		 var imag = new sap.m.Image( {
+  	          src : "images/logo.png",
+  	          height : "40px"
+  	     });
+  		
+  		var oBar = new sap.m.Bar( {
+  			contentLeft : [new sap.m.Button({
+
+               icon: icon="sap-icon://nav-back",
+               
+               press: function(){
+
+               	app.back();               
+
+               }
+
+           })], 
+  		          
+  	     contentMiddle : [ new sap.m.Label( {
+  	          text : "My Books",
+  	          textAlign : "Left",
+  	          design : "Bold"
+  	     }).addStyleClass("tit") ],
+  	     contentRight : [imag]
+  	});
+  		
+  		myBooksPage.setCustomHeader(oBar);
+>>>>>>> cssDesign
 
 		
 		return myBooksPage;
