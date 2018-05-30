@@ -69,9 +69,8 @@
 }
 
 .tit {
-	color: red;
+	color: red !important;
 	font-size: 2em;
-	background-color: "#78a99b";
 }
 
 .btnBrowseLibrary {
@@ -85,4 +84,9 @@
     margin-left: 1%;
     margin-top: 5%;
     background-color: black;
+}
+
+.bold {
+	font-weight: bold !important;
+	font-size: 20px !important;
 }

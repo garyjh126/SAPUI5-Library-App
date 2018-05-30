@@ -5,7 +5,7 @@
 		version="2.5"
 		xmlns="http://java.sun.com/xml/ns/javaee">
 
-	<display-name>BookCRUD</display-name>
+	<display-name>bookCRUD_I348607</display-name>
 
 	<!-- ============================================================== -->
 	<!-- UI5 resource servlet used to handle application resources      -->

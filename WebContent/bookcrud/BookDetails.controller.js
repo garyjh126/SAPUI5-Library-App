@@ -55,8 +55,7 @@ sap.ui
 								.getProperty("Booked");
 						var releaseDate = oSelectedItem.getBindingContext()
 								.getProperty("Releasedate");
-						var bookingID = oSelectedItem.getBindingContext()
-								.getProperty("BookingId");
+						
 
 						sap.ui.getCore().byId("isbn").setValue(ISBN);
 						sap.ui.getCore().byId("titlebook").setValue(Titlebook);
@@ -65,7 +64,7 @@ sap.ui
 						sap.ui.getCore().byId("booked").setValue(booked);
 						sap.ui.getCore().byId("releasedate").setValue(
 								releaseDate);
-						sap.ui.getCore().byId("bookingid").setValue(bookingID);
+						
 						sap.ui.getCore().byId("isbn").setEnabled(false);
 					},
 
@@ -79,7 +78,7 @@ sap.ui
 						sap.ui.getCore().byId("authorbook").setValue("");
 						sap.ui.getCore().byId("booked").setValue("");
 						sap.ui.getCore().byId("releasedate").setValue("");
-						sap.ui.getCore().byId("bookingid").setValue("");
+						
 						sap.ui.getCore().byId("isbn").setEnabled(true);
 					},
 
@@ -95,8 +94,7 @@ sap.ui
 								.getValue();
 						oEntry.Releasedate = sap.ui.getCore().byId(
 								"releasedate").getValue();
-						oEntry.BookingId = sap.ui.getCore().byId("bookingid")
-								.getValue();
+						
 
 						OData
 								.request(
@@ -144,18 +142,64 @@ sap.ui
 					},
 
 					Borrow : function() {
-
+							
 						var oEntry = {};
 						oEntry.Isbn = sap.ui.getCore().byId("isbn").getValue();
-						oEntry.Titlebook = sap.ui.getCore().byId("titlebook")
-								.getValue();
-						oEntry.Authorbook = sap.ui.getCore().byId("authorbook")
-								.getValue();
+						
 
-						oEntry.Releasedate = sap.ui.getCore().byId(
-								"releasedate").getValue();
-						oEntry.BookingId = sap.ui.getCore().byId("bookingid")
-								.getValue();
+						OData
+								.request(
+										{
+											requestUri : "http://dewdfgwp01325.wdf.sap.corp:8000/sap/opu/odata/sap/ZTA_BOOKS_N_SRV/LoansSet",
+											method : "GET",
+											headers : {
+												"X-Requested-With" : "XMLHttpRequest",
+												"Content-Type" : "application/atom+xml",
+												"DataServiceVersion" : "2.0",
+												"X-CSRF-Token" : "Fetch"
+											}
+										},
+										function(data, response) {
+											header_xcsrf_token = response.headers['x-csrf-token'];
+											var oHeaders = {
+												"x-csrf-token" : header_xcsrf_token,
+												'Accept' : 'application/json',
+											};
+
+											OData
+													.request(
+															{
+																requestUri : "http://dewdfgwp01325.wdf.sap.corp:8000/sap/opu/odata/sap/ZTA_BOOKS_N_SRV/LoansSet",
+																method : "POST",
+																headers : oHeaders,
+																data : oEntry
+															},
+															function(data,
+																	request) {
+																alert("Loan Created Successfully");
+																location
+																		.reload(true);
+															},
+															function(err) {
+																alert("Loan Creation Failed");
+															});
+										}, function(err) {
+											var request = err.request;
+											var response = err.response;
+											alert("Error in Get -- Request "
+													+ request + " Response "
+													+ response);
+										});
+
+						
+						
+						
+						
+						
+						
+						/*var oEntry = {};
+						oEntry.Isbn = sap.ui.getCore().byId("isbn").getValue();
+						
 
 						if (sap.ui.getCore().byId("booked").getValue() == '-') {
 							oEntry.Booked = 'X';
@@ -207,7 +251,7 @@ sap.ui
 													+ response);
 										});
 
-						/*
+						
 						 * var oEntryLoans = {}; oEntryLoans.Userid = ;
 						 * oEntryLoans.Isbn =
 						 * sap.ui.getCore().byId("isbn").getValue();
@@ -215,8 +259,8 @@ sap.ui
 						 * sap.ui.getCore().byId("isbn").getValue();
 						 * oEntryLoans.Datereturn =
 						 * sap.ui.getCore().byId("isbn").getValue();
-						 */
-
+						 
+*/
 					},
 
 					Update : function() {
@@ -230,15 +274,14 @@ sap.ui
 								.getValue();
 						oEntry.Releasedate = sap.ui.getCore().byId(
 								"releasedate").getValue();
-						oEntry.BookingId = sap.ui.getCore().byId("bookingid")
-								.getValue();
+						
 
 						console.log(oEntry.Isbn);
 						console.log(oEntry.Titlebook);
 						console.log(oEntry.Authorbook);
 						console.log(oEntry.Booked);
 						console.log(oEntry.Releasedate);
-						console.log(oEntry.BookingId);
+						
 
 						OData
 								.request(
@@ -338,6 +381,53 @@ sap.ui
 													+ request + " Response "
 													+ response);
 										});
+						OData
+						.request(
+								{
+									requestUri : "http://dewdfgwp01325.wdf.sap.corp:8000/sap/opu/odata/sap/ZTA_BOOKS_N_SRV/LoansSet('"
+											+ oEntry.Isbn + "')",
+									method : "GET",
+									headers : {
+										"X-Requested-With" : "XMLHttpRequest",
+										"Content-Type" : "application/atom+xml",
+										"DataServiceVersion" : "2.0",
+										"X-CSRF-Token" : "Fetch"
+									}
+								},
+								function(data, response) {
+									header_xcsrf_token = response.headers['x-csrf-token'];
+									var oHeaders = {
+										"x-csrf-token" : header_xcsrf_token,
+										'Accept' : 'application/json',
+									};
+
+									OData
+											.request(
+													{
+														requestUri : "http://dewdfgwp01325.wdf.sap.corp:8000/sap/opu/odata/sap/ZTA_BOOKS_N_SRV/LoansSet('"
+																+ oEntry.Isbn
+																+ "')",
+
+														method : "DELETE",
+														headers : oHeaders,
+														data : oEntry
+													},
+													function(data,
+															request) {
+														alert("Delete Success");
+														location
+																.reload(true);
+													},
+													function(err) {
+														alert("Delete Failed");
+													});
+								}, function(err) {
+									var request = err.request;
+									var response = err.response;
+									alert("Error in Get -- Request "
+											+ request + " Response "
+											+ response);
+								});
 
 					},
 					// Cancel Action

@@ -46,7 +46,8 @@ sap.ui.jsview("bookcrud.BookDetails", {
        	});
        		
        		oPage.setCustomHeader(oBar);
-                 
+       		               
+
           		var oBtnUpd = new sap.m.Button("Update", {
                     text: "Update",
         		            tap: [ oController.Update, oController ]
@@ -65,7 +66,9 @@ sap.ui.jsview("bookcrud.BookDetails", {
 		            tap: [ oController.Borrow, oController ]
 		            });
         		var oBtnSub = new sap.m.Button("Submit", {
+
         					icon: icon="sap-icon://add-coursebook",
+ 
         		            text: "Create New Book",
         		            press: oController.NewEntry,
         		            type: sap.m.ButtonType.Emphasized
@@ -104,15 +107,9 @@ sap.ui.jsview("bookcrud.BookDetails", {
         		            id: "booked"
         		            }),
         		            new sap.m.Label({text:"Enter Release Date"}),
-        		            new sap.m.Input({                                      
-        		            maxLength: 20,
-        		            id: "releasedate"
-        		            }),
-        		            new sap.m.Label({text:"Enter bookingId"}),
-        		            new sap.m.Input({                                      
-        		            maxLength: 20,
-        		            id: "bookingid"
-        		            }),oBtnUpd, oBtnBorrowBook,oBtnDel, oBtnCan, oBtnSav
+        		            
+        		            new sap.m.DatePicker("releasedate", {valueFormat: "dd/MM/yyyy"}),
+        		            oBtnUpd, oBtnBorrowBook,oBtnDel, oBtnCan, oBtnSav
         		       ]
                 });
 
@@ -123,24 +120,24 @@ sap.ui.jsview("bookcrud.BookDetails", {
           			itemPress : [ oController.ItemPress,oController ],
           			columns: [
           				new sap.m.Column({
-          					width: "4em", header: new sap.m.Label({text: "Book ID"}) 
+          					width: "4em", header: new sap.m.Label({text: "Book ID"}).addStyleClass("bold") 
           				}),
           				new sap.m.Column({
-          					width: "4em", header: new sap.m.Label({text: "Title"}) 
+          					width: "4em", header: new sap.m.Label({text: "Title"}).addStyleClass("bold")  
           				}),
           				new sap.m.Column({
-          					width: "4em", header: new sap.m.Label({text: "Author"}) 
+          					width: "4em", header: new sap.m.Label({text: "Author"}).addStyleClass("bold") 
           				}),
           				new sap.m.Column({
-          					width: "4em", header: new sap.m.Label({text: "Availability"}) 
+          					width: "4em", header: new sap.m.Label({text: "Availability"}).addStyleClass("bold")  
           				}),
           				new sap.m.Column({
-          					width: "4em", header: new sap.m.Label({text: "Release Date"}) 
-          				}),
-          				new sap.m.Column({
-          					width: "4em", header: new sap.m.Label({text: "Booking ID"}) 
+          					width: "4em", header: new sap.m.Label({text: "Release Date"}).addStyleClass("bold")  
+          				
           				})]
+
           		}).addStyleClass("blueTable");
+
                  
 
                  
@@ -165,10 +162,7 @@ sap.ui.jsview("bookcrud.BookDetails", {
                               }),
                               new sap.m.Label({
                                   text: "{Releasedate}"
-                                    }),
-                     new sap.m.Label({
-                     text: "{BookingId}"
-                       })
+                                    })
                        ]      
               });
 

@@ -46,15 +46,14 @@ sap.ui.controller("bookcrud.Menu", {
 
 		var jsonmodel = new sap.ui.model.json.JSONModel();
 
-		model.read("/BookSet?", null, null, true, function(
-				oData, repsonse) {
+		model.read("/BookSet?", null, null, true, function(oData, repsonse) {
 			jsonmodel.setData(oData);
 		});
 		sap.ui.getCore().setModel(jsonmodel);
 	},
 	
 	press2: function(){
-		var oApp = sap.ui.getCore().byId("menuID");
+/*		var oApp = sap.ui.getCore().byId("menuID");
 		
 		oApp.to(myBooks);
 		
@@ -70,7 +69,21 @@ sap.ui.controller("bookcrud.Menu", {
 		});
 		sap.ui.getCore().setModel(jsonmodel);
 
-
-	}
+*/
+var oApp = sap.ui.getCore().byId("menuID");
+		
+		oApp.to(myBooks);
+		var sServiceUrl = "http://dewdfgwp01325.wdf.sap.corp:8000/sap/opu/odata/sap/ZTA_BOOKS_N_SRV/";
+        var model = new sap.ui.model.odata.ODataModel(sServiceUrl,true);
+        var jsonmodel = new sap.ui.model.json.JSONModel();
+        
+    	model.read("/LoansSet?", null, null, true, function(
+				oData, repsonse) {
+			jsonmodel.setData(oData);
+		});
+		sap.ui.getCore().setModel(jsonmodel);
+	       
+	},
 	
+		
 });

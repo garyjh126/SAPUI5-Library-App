@@ -16,11 +16,14 @@ sap.ui.jsview("bookcrud.Menu", {
 		
 		 console.log("create content" + oController);
 		var menuPage = new sap.m.Page({
+
             //title: "Menu",
+
            
 
 		});
 		var btnBrowseLibrary = new sap.m.Button("BrowseLibrary", {
+
 			icon: icon="sap-icon://education",
 			text: "Browse Library",
 		            press: [ oController.press, oController ]
@@ -50,6 +53,22 @@ sap.ui.jsview("bookcrud.Menu", {
 		
 		menuPage.setCustomHeader(oBar);
 		
+		var oAppHeader = new sap.ui.commons.ApplicationHeader("appHeader");
+
+   		//configure the branding area
+   		//oAppHeader.setLogoSrc("images/WIN_20180508_10_18_15_Pro.jpg");
+   		oAppHeader.setLogoText("Library");
+
+   		//configure the welcome area
+   		oAppHeader.setDisplayWelcome(true);
+
+
+   		//configure the log off area
+   		oAppHeader.setDisplayLogoff(true);
+   		oAppHeader.attachLogoff(function() {
+   			console.log("Log off is triggered");
+   		});
+   		oAppHeader.placeAt("content"); 
 		
 		menuPage.addContent(btnBrowseLibrary).addContent(btnMyBooks);
 		
