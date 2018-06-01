@@ -18,8 +18,6 @@ sap.ui.jsview("bookcrud.BookDetails", {
                      		navButtonPress: [oController.navFromBrowseLibrary, oController]
                  });
                  
-<<<<<<< HEAD
-=======
                  
                  var imag = new sap.m.Image( {
        	          src : "images/logo.png",
@@ -48,8 +46,7 @@ sap.ui.jsview("bookcrud.BookDetails", {
        	});
        		
        		oPage.setCustomHeader(oBar);
-                 
->>>>>>> cssDesign
+
           		var oBtnUpd = new sap.m.Button("Update", {
                     text: "Update",
         		            tap: [ oController.Update, oController ]
@@ -68,10 +65,6 @@ sap.ui.jsview("bookcrud.BookDetails", {
 		            tap: [ oController.Borrow, oController ]
 		            });
         		var oBtnSub = new sap.m.Button("Submit", {
-<<<<<<< HEAD
-=======
-        					icon: icon="sap-icon://add-coursebook",
->>>>>>> cssDesign
         		            text: "Create New Book",
         		            press: oController.NewEntry,
         		            type: sap.m.ButtonType.Emphasized
@@ -146,12 +139,8 @@ sap.ui.jsview("bookcrud.BookDetails", {
           				new sap.m.Column({
           					width: "4em", header: new sap.m.Label({text: "Booking ID"}) 
           				})]
-<<<<<<< HEAD
-          		});
-=======
+
           		}).addStyleClass("blueTable");
->>>>>>> cssDesign
-                 
 
                  
                  var template = new sap.m.ColumnListItem({
